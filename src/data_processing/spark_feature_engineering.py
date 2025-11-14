@@ -1,19 +1,21 @@
-# Spark Feature Engineering
-
-## Overview
-This script is designed to perform various feature engineering tasks for Spark DataFrames.
-
-### Features Implemented
-- Missing value imputation
-- Categorical feature encoding
-- Feature scaling
-
-## Example Usage
-```python
 from pyspark.sql import SparkSession
+import pandas as pd
 
-spark = SparkSession.builder.appName('Feature Engineering').getOrCreate()
-
-# Load data
-# Perform transformations
-``
+def aggregate_features(spark: SparkSession, df: pd.DataFrame):
+    sdf = spark.createDataFrame(df)
+    sdf.createOrReplaceTempView('ads')
+    agg_query = """
+    SELECT
+        ad_id,
+        user_id,
+        campaign_id,
+        ad_category,
+        time_of_day,
+        device,
+        COUNT(*) AS impressions,
+        SUM(clicked) AS clicks,
+        AVG(clicked) AS ctr
+    FROM ads
+    GROUP BY ad_id, user_id, campaign_id, ad_category, time_of_day, device
+    """
+    return spark.sql(agg_query).toPandas()
