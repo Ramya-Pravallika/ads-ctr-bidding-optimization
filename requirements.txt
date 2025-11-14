@@ -1,0 +1,6 @@
+pandas
+numpy
+pyspark
+tensorflow
+mlflow
+apache-airflow
