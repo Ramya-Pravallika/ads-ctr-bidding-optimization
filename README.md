@@ -8,7 +8,7 @@ Below is a sample output showing
 - Model lift (DNN vs Logistic Regression)
 - Example bid recommendations based on predicted CTR
 
-![Sample Output: Model ROC & Bidding Recommendations](sample_output.png)
+[Sample Output: Model ROC & Bidding Recommendations](sample_output.png)
 
 ## Steps to Run
 
@@ -36,3 +36,4 @@ See [`mlflow/mlflow_setup.md`](mlflow/mlflow_setup.md)
 
 ## Extend & Productionize
 Feel free to modify, tune, swap data/models, and add real-time serving as needed!
+
